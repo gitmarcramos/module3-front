@@ -1,10 +1,10 @@
 import { React, Component } from "react";
-import "./menu.css";
+import "./Menu.css"
 import {Link} from "react-router-dom";
 
 export default class Header extends Component {
   state = {
-    isLoggedIn: false,
+    currentUser: false,
   };
 
   render() {
@@ -17,14 +17,14 @@ export default class Header extends Component {
             <div className="burger__line burger__line--3"></div>
           </div>
 
-          <a className="nav-logo" href="/home">
+          <Link className="nav-logo" to="/home">
             <img
               src="/images/logo/awesome-quote-logo-inline.png"
               alt="Awesome Quotes logo"
             />
-          </a>
+          </Link>
 
-          <a href="/auth/login">
+          <Link to="/auth/login">
             <svg
               width="25"
               height="24"
@@ -55,42 +55,47 @@ export default class Header extends Component {
                 strokeLinejoin="round"
               />
             </svg>
-          </a>
+          </Link>
         </div>
 
         <div className="line-separation"></div>
 
+
         <div className="menu" id="menu_page">
           <div className="menu__item menu__item--quote-related">
-            <a href="/quotes/create-quote" className="body-bold">
-              <img src="/images/icons/menu-publish-icon.png" alt="" />
-              Publish an Awesome Quote
-            </a>
-            <a href="/home/best-quotes" className="body">
-              Best quotes
-            </a>
-            <a href="/filter" className="body">
-              Filter
-            </a>
-          </div>
 
           <div className="menu__item menu__item--account">
-            <a href="/users/my-account" className="body-bold">
-              <img src="/images/icons/menu-account-icon.png" alt="" /> My
-              account
-            </a>
+            <h2 className="title">Hello <span className="title">UserPseudo</span></h2>
+            <span className="publication-date">a.k.a</span>
+            <h3 className="body-bold">UserName</h3>
+            <Link to="#" className="published-by-link">My account</Link>
           </div>
 
+            <Link to="/quotes/create-quote" className="body-bold">
+              <img src="./../../../public/Images/icons/menu-publish-icon.svg" alt="" />
+              Publish an Awesome Quote
+            </Link>
+            <Link to="/home/best-quotes" className="body-bold">
+            <img src="./../../../public/Images/icons/menu-best_quotes-icon.svg" alt="" />
+              Best quotes
+            </Link>
+            <Link to="/filter" className="body-bold">
+            <img src="./../../../public/Images/icons/menu-filter-icon.svg" alt="" />
+              Filter
+            </Link>
+          </div>
+
+
           <div className="menu__item menu__item--legal">
-            <a href="/about" className="body">
+            <Link to="/about" className="body">
               About
-            </a>
-            <a href="/terms-and-conditions" className="body">
+            </Link>
+            <Link to="/terms-and-conditions" className="body">
               Terms and conditions
-            </a>
-            <a href="/privacy-policy" className="body">
+            </Link>
+            <Link to="/privacy-policy" className="body">
               Privacy policy
-            </a>
+            </Link>
           </div>
 
           {/* {{#if currentUser}}
@@ -99,14 +104,9 @@ export default class Header extends Component {
         </div>
         {{else}} */}
           <div className="menu__item menu__item--log-in">
-            <a href="/auth/login" className="suggestion-modal">
+            <Link to="/auth/login" className="suggestion-modal">
               Login
-            </a>
-          </div>
-          <div className="menu__item menu__item--create-account">
-            <a href="/auth/create-account" className="suggestion-modal">
-              Create an Account
-            </a>
+            </Link>
           </div>
           {/* {{/if}} */}
         </div>

@@ -62,6 +62,11 @@
         transition: transform 600ms ease-in-out;
         z-index: 1000;
 
+        .published-by-link{
+            text-decoration: underline;
+            margin-top: 1.8rem
+        }
+
 
         a {
             text-decoration: none;
@@ -109,6 +114,4 @@
             width: 16rem;
         }
     }
-
-
 }

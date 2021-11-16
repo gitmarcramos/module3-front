@@ -84,6 +84,11 @@
   z-index: 1000;
 }
 
+.menu_container .menu .published-by-link {
+  text-decoration: underline;
+  margin-top: 1.8rem;
+}
+
 .menu_container .menu a {
   text-decoration: none;
   margin-bottom: .8rem;

@@ -3,6 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import Home from "./Views/Home/Home";
 import "./styles/mainStyle.css";
 import Loader from "./Components/Loader/Loader";
+import CreateAccount from "./Views/Auth/Create-Account/CreateAccount"
 
 class App extends React.Component {
   state = {
@@ -15,6 +16,7 @@ class App extends React.Component {
         <Switch>
           <Route exact path="/" component={Loader}/>
           <Route path="/home" component={Home} />
+          <Route path="/create-account" component={CreateAccount} />
         </Switch>
       </div>
     );
