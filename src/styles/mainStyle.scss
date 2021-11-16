@@ -1,0 +1,14 @@
+@import url("./reset.css");
+@import url("./variables.css");
+
+.main {
+    width: 100%;
+    min-width: 300px;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 7rem clamp(1.6rem, 10vw, 1.8rem) 0;
+    -webkit-tap-highlight-color: transparent;
+}

@@ -1,0 +1,46 @@
+.quote_header {
+    width: 100%;
+    margin-bottom: 2.8rem;
+
+    .quote_header__infos {
+        margin-bottom: 1.2rem;
+        display: flex;
+        justify-content: space-between;
+
+        .publication-date {
+            display: block;
+            margin-top: .8rem;
+        }
+
+        #quote-date {
+            display: inline;
+        }
+    }
+
+    .quote_header__infos--kebab {
+        display: flex;
+        flex-direction: column;
+        gap: .2rem;
+        cursor: pointer;
+        padding: 1.6rem;
+        margin-top: -1.6rem;
+        margin-right: -1.6rem;
+
+        .kebab-dot {
+            height: 5px;
+            width: 5px;
+            border-radius: 100%;
+            background-color: var(--grey);
+        }
+    }
+
+    .quote_header__hashtags {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .line-separation {
+        margin-top: 1.2rem;
+    }
+}
