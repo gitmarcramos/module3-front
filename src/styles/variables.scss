@@ -231,46 +231,46 @@ button {
 
 /* -------------------------------- // Input -------------------------------- */
 
-.form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    margin-top: 1.6rem;
+// .form {
+//     display: flex;
+//     flex-direction: column;
+//     align-items: center;
+//     width: 100%;
+//     margin-top: 1.6rem;
 
 
-    .input {
-        width: 100%;
-        min-height: 4.8rem;
-        background-color: var(--background);
-        border-width: .5px;
-        border-radius: .4rem;
-        border-color: var(--main);
-        margin: 1.6rem 0;
-        padding: .4rem;
-        text-indent: 1rem;
-        font-size: clamp(1.6rem, 5vw, 1.8rem);
-    }
+//     .input {
+//         width: 100%;
+//         min-height: 4.8rem;
+//         background-color: var(--background);
+//         border-width: .5px;
+//         border-radius: .4rem;
+//         border-color: var(--main);
+//         margin: 1.6rem 0;
+//         padding: .4rem;
+//         text-indent: 1rem;
+//         font-size: clamp(1.6rem, 5vw, 1.8rem);
+//     }
 
 
 
-    ::placeholder {
-        font-family: 'Roboto', sans-serif;
-        font-size: clamp(1.2rem, 5vw, 1.6rem);
-        color: var(--grey);
-    }
+//     ::placeholder {
+//         font-family: 'Roboto', sans-serif;
+//         font-size: clamp(1.2rem, 5vw, 1.6rem);
+//         color: var(--grey);
+//     }
 
-    textarea {
-        font-family: "Archia";
-        width: 100%;
-        box-sizing: border-box;
-        resize: none;
-        background-color: var(--background);
-        border: .5px solid var(--main);
-        border-radius: .4rem;
-        padding: .4rem;
-        font-size: clamp(1.6rem, 5vw, 1.8rem);
-    }
+//     textarea {
+//         font-family: "Archia";
+//         width: 100%;
+//         box-sizing: border-box;
+//         resize: none;
+//         background-color: var(--background);
+//         border: .5px solid var(--main);
+//         border-radius: .4rem;
+//         padding: .4rem;
+//         font-size: clamp(1.6rem, 5vw, 1.8rem);
+//     }
 
-}
+// }
 
