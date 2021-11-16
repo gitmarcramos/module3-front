@@ -1,6 +1,7 @@
 import React from "react";
 import "./../../../styles/form.css";
 import MenuSecond from "./../../../Components/MenuSecond/MenuSecond";
+import APIHandler from "./../../../api/handler";
 
 export default class createAccount extends React.Component {
   constructor(props) {
@@ -52,7 +53,6 @@ export default class createAccount extends React.Component {
         <MenuSecond />
         <h1 className="title">Create an account</h1>
         <form className="form">
-        
           <div className="user-pic">
             <input
               ref={this.state.image}
@@ -61,7 +61,10 @@ export default class createAccount extends React.Component {
               name="image"
               type="file"
             />
-            <img src="./../../../../public/Images/icons/menu-account-icon.svg" alt="" />
+            <img
+              src="./../../../../public/Images/icons/menu-account-icon.svg"
+              alt=""
+            />
           </div>
 
           <div className="input-container">

@@ -1,0 +1,25 @@
+.account-creation-container {
+
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 0;
+
+    a {
+        text-decoration: none;
+    }
+
+    .buttons-choice-container {
+        display: flex;
+        flex-direction: column;
+        gap: 2.4rem;
+        margin-top: 7rem;
+        align-items: center;
+
+        img {
+            width: 80%;
+            cursor: pointer;
+        }
+    }
+}
