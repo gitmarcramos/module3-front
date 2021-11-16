@@ -1,7 +1,7 @@
 import React from "react";
 import APIHandler from "./../../api/handler";
 import Menu from "./../../Components/Menu/Menu";
-import QuoteCard from "./../../Components/QuoteCard/QuoteCard"
+import QuoteCard from "./../../Components/QuoteCard/QuoteCard";
 
 class Home extends React.Component {
   state = {
@@ -10,8 +10,8 @@ class Home extends React.Component {
 
   async componentDidMount() {
     try {
-    const quotes = await APIHandler.get("/api/home");
-    this.setState({quotes: quotes.data});
+      const quotes = await APIHandler.get("/api/home");
+      this.setState({ quotes: quotes.data });
     } catch (err) {
       console.log(err);
     }
@@ -20,10 +20,10 @@ class Home extends React.Component {
   render() {
     return (
       <>
-        <Menu/>
+        <Menu />
         <div>
-        {this.state.quotes.map((quote, i)=>{
-              return <QuoteCard key={i} data={quote}/>
+          {this.state.quotes.map((quote, i) => {
+            return <QuoteCard key={i} data={quote} />;
           })}
         </div>
       </>

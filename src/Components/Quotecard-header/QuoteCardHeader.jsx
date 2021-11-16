@@ -3,9 +3,10 @@ import "./QuoteCardHeader.css";
 import { Link } from "react-router-dom";
 
 export default function QuoteCardHeader(props) {
+  // console.log(props.hashtags, props.hashtags.length);
   return (
     <>
-      <div className="quote_header">
+      <div className="quote_header" key={props.key}>
         <div className="quote_header__infos">
           <div className="quote_header__infos--text">
             <span className="published-by">Published by: </span>
@@ -28,13 +29,12 @@ export default function QuoteCardHeader(props) {
         </div>
 
         <div className="quote_header__hashtags">
-          {console.log(props.hashtags.length)}
 
-          {/* {props.hashtags.length >0 ? <p>Hello</p> : null} */}
-          {props.hashtags.map((hashtag, i) => {
+
+          {(props.hashtags.length!=0 && props.hashtags[0]!="") && props.hashtags.map((hashtag, i) => {
             return (
-              <Link to="#" className="hashtags">
-                {hashtag}
+              <Link to="#" className="hashtags" key={i}>
+                #{hashtag}
               </Link>
             );
           })}

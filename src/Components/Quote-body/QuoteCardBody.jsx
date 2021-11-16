@@ -1,26 +1,19 @@
 import React from "react";
-import "./QuoteCardBody.css"
+import "./QuoteCardBody.css";
 
-export default function QuoteCardBody(props){
-
-    return(
-        <>
-            <div className="quote-body">
-            {/* loop */}
-            <div className="quote_atom">               
-                <h2 className="title">USER NAME</h2>
-                <p className="body">User quote</p>
+export default function QuoteCardBody(props) {
+  return (
+    <>
+      <div className="quote-body">
+        {props.quote.map((quote, i) => {
+          return (
+            <div className="quote_atom" key={i}>
+              <h2 className="title">{quote.user}</h2>
+              <p className="body">{quote.text}</p>
             </div>
-            {/* loop */}
-            <div className="quote_atom">               
-                <h2 className="title">USER NAME</h2>
-                <p className="body">User quote</p>
-            </div>
-            <div className="quote_atom">               
-                <h2 className="title">USER NAME</h2>
-                <p className="body">User quote</p>
-            </div>
-        </div>
-        </>
-    )
+          );
+        })}
+      </div>
+    </>
+  );
 }
