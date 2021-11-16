@@ -5,6 +5,7 @@ import "./styles/mainStyle.css";
 import Loader from "./Components/Loader/Loader";
 import CreateAccount from "./Views/Auth/Create-Account/CreateAccount";
 import ChooseAccountCreation from "./Views/Auth/ChooseAccountCreation/ChooseAccountCreation"
+import Login from "./Views/Auth/Login/Login"
 
 class App extends React.Component {
   state = {
@@ -19,6 +20,7 @@ class App extends React.Component {
           <Route path="/home" component={Home} />
           <Route path="/create-account" component={CreateAccount} />
           <Route path="/account-creation" component={ChooseAccountCreation} />
+          <Route path="/auth/login" component={Login}/>
         </Switch>
       </div>
     );

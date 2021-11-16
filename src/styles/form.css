@@ -19,6 +19,7 @@
 
 .form .input-container .error-message {
   margin-left: 2rem;
+  font-size: 1.2rem;
 }
 
 .form .input {
@@ -72,6 +73,15 @@
   font-size: clamp(1.6rem, 5vw, 1.8rem);
 }
 
+.button--primary {
+  width: 100%;
+  margin-top: 4.8rem;
+}
+
+.no-account-yet {
+  margin-top: 2.4rem;
+}
+
 .user-pic {
   width: 100px;
   height: 100px;
@@ -85,5 +95,17 @@
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
+}
+
+.login-container {
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: absolute;
+  top: 0;
 }
 /*# sourceMappingURL=form.css.map */

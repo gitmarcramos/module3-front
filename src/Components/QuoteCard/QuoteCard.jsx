@@ -7,7 +7,6 @@ import QuoteCardFooter from "./../../Components/QuoteCard-footer/QuoteCardFooter
 
 export default function QuoteCard(props) {
   return (
-    <div className="main">
       <div className="quote">
         <QuoteCardHeader
           date={props.data.dateCreatedAt}
@@ -17,6 +16,5 @@ export default function QuoteCard(props) {
         <QuoteCardBody quote={props.data.quotes} />
         <QuoteCardFooter />
       </div>
-    </div>
   );
 }

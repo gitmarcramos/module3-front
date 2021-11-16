@@ -124,7 +124,7 @@ export default class createAccount extends React.Component {
             ></input>
           </div>
           <button className="button--primary" onClick={this.handleSubmit}>
-            Let's go!
+            Create my account
           </button>
         </form>
       </>
