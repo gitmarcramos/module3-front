@@ -83,21 +83,21 @@ export default class Header extends Component {
 
             <Link to="/quotes/create-quote" className="body-bold">
               <img
-                src="./../../../public/Images/icons/menu-publish-icon.svg"
+                src="./../../../Images/icons/menu-publish-icon.svg"
                 alt=""
               />
               Publish an Awesome Quote
             </Link>
             <Link to="/home/best-quotes" className="body-bold">
               <img
-                src="./../../../public/Images/icons/menu-best_quotes-icon.svg"
+                src="./../../../Images/icons/menu-best_quotes-icon.svg"
                 alt=""
               />
               Best quotes
             </Link>
             <Link to="/filter" className="body-bold">
               <img
-                src="./../../../public/Images/icons/menu-filter-icon.svg"
+                src="./../../../Images/icons/menu-filter-icon.svg"
                 alt=""
               />
               Filter

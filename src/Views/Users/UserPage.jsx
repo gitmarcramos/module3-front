@@ -3,18 +3,18 @@ import "./UserPage.css";
 import { Link } from "react-router-dom";
 import APIHandler from "./../../api/handler";
 import QuoteCard from "../../Components/QuoteCard/QuoteCard";
-import Menu from "./../../Components/Menu/Menu"
+import Menu from "./../../Components/Menu/Menu";
 
 export default class UserPage extends React.Component {
   state = {
     user: null,
     followBtnState: false,
   };
-
   async componentDidMount() {
     this.fetchUser();
   }
 
+  // Get the user selected from API
   fetchUser = async () => {
     try {
       const user = await APIHandler.get(
@@ -28,11 +28,37 @@ export default class UserPage extends React.Component {
     }
   };
 
-  toggleFollow = (e) =>{
-    this.setState({
-      followBtnState: !this.state.followBtnState,
-    });
-  }
+  //! NOT WORKING MAN!
+    addUserToFollowings = async () => {
+      const foundUser = await APIHandler.get(
+        "/api/users/" + this.state.user.user.pseudo
+      );
+
+      foundUser.data.user.followers = [
+        ...foundUser.data.user.followers,
+        "currentUserId",
+      ];
+
+      // console.log("Found user followers ======>",foundUser);
+
+      const followedUser = await APIHandler.patch(
+        "/api/users/" + this.state.user.user.pseudo + "/edit",
+        foundUser
+      );
+
+      // console.log(followedUser);
+    };
+
+  toggleFollow = (e) => {
+    this.setState(
+      {
+        followBtnState: !this.state.followBtnState,
+      },
+      async () => {
+        await this.addUserToFollowings();
+      }
+    );
+  };
 
   render() {
     if (!this.state.user) {
@@ -42,13 +68,13 @@ export default class UserPage extends React.Component {
     const { name, pseudo, profilePic, followers, following, likes, favorites } =
       this.state.user.user;
 
-    const btnClass = this.state.followBtnState ? "button--primary" : "button--secondary";
-
-    console.log(this.state.user.user.followers.length)
+    const btnClass = this.state.followBtnState
+      ? "button--primary"
+      : "button--secondary";
 
     return (
       <>
-        <Menu/>
+        <Menu />
         {/* //! CHANGE THE CONDITION WHERE this.state.user._id to match currentUser cookie */}
         {/* Here needs to pass the current user cookie */}
         {this.state.user.user._id === "currentUser" && (
@@ -83,13 +109,19 @@ export default class UserPage extends React.Component {
 
           {/* //! CHANGE THE CONDITION WHERE this.state.user._id to match currentUser cookie */}
           {/* If it's user's account, edit my account button */}
-          {(this.state.user.user._id === 'currentUser') ? (
+          {this.state.user.user._id === "currentUser.id" ? (
             <Link to={pseudo + "/edit"}>
               <span className="published-by-link">Edit my account</span>
             </Link>
-          ):((this.state.followBtnState === false)? (
-            <div className={btnClass} onClick={this.toggleFollow}>Follow</div>) : (<div className={btnClass} onClick={this.toggleFollow}>Unfollow</div>))}
-
+          ) : this.state.followBtnState === false ? (
+            <div className={btnClass} onClick={this.toggleFollow}>
+              Follow
+            </div>
+          ) : (
+            <div className={btnClass} onClick={this.toggleFollow}>
+              Unfollow
+            </div>
+          )}
 
           <div className="line-separation"></div>
 
