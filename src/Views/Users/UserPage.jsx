@@ -3,10 +3,12 @@ import "./UserPage.css";
 import { Link } from "react-router-dom";
 import APIHandler from "./../../api/handler";
 import QuoteCard from "../../Components/QuoteCard/QuoteCard";
+import Menu from "./../../Components/Menu/Menu"
 
 export default class UserPage extends React.Component {
   state = {
     user: null,
+    followBtnState: false,
   };
 
   async componentDidMount() {
@@ -26,18 +28,28 @@ export default class UserPage extends React.Component {
     }
   };
 
+  toggleFollow = (e) =>{
+    this.setState({
+      followBtnState: !this.state.followBtnState,
+    });
+  }
+
   render() {
     if (!this.state.user) {
-      return <p>Loading Bro!</p>;
+      return <p className="body">Loading Bro!</p>;
       // Or use the "?" (optional chaining) to check if the condition is null. IE: console.log(this.state.user?.user);
     }
     const { name, pseudo, profilePic, followers, following, likes, favorites } =
       this.state.user.user;
 
-    console.log(this.state.user.listQuotes[0])
+    const btnClass = this.state.followBtnState ? "button--primary" : "button--secondary";
+
+    console.log(this.state.user.user.followers.length)
 
     return (
       <>
+        <Menu/>
+        {/* //! CHANGE THE CONDITION WHERE this.state.user._id to match currentUser cookie */}
         {/* Here needs to pass the current user cookie */}
         {this.state.user.user._id === "currentUser" && (
           <h1 className="title">My account</h1>
@@ -69,14 +81,29 @@ export default class UserPage extends React.Component {
             </div>
           </div>
 
+          {/* //! CHANGE THE CONDITION WHERE this.state.user._id to match currentUser cookie */}
+          {/* If it's user's account, edit my account button */}
+          {(this.state.user.user._id === 'currentUser') ? (
+            <Link to={pseudo + "/edit"}>
+              <span className="published-by-link">Edit my account</span>
+            </Link>
+          ):((this.state.followBtnState === false)? (
+            <div className={btnClass} onClick={this.toggleFollow}>Follow</div>) : (<div className={btnClass} onClick={this.toggleFollow}>Unfollow</div>))}
+
+
           <div className="line-separation"></div>
+
+          {/* //! CHANGE THE CONDITION WHERE this.state.user._id to match currentUser cookie */}
+          {/* Conditional to check if it's user's account or another user's account */}
+          {this.state.user._id === "currentUser" ? (
+            <h3 className="subtitle">My quotes</h3>
+          ) : (
+            <h3 className="subtitle">{name}'s quotes</h3>
+          )}
         </div>
 
-        {/* <QuoteCard publisher="Hello" date="boo" hashtags='boo' data="hello"/> */}
-        {this.state.user.listQuotes.map((quote, i)=>{
-            return(
-                <QuoteCard key={i} data={quote}/>
-            )
+        {this.state.user.listQuotes.map((quote, i) => {
+          return <QuoteCard key={i} data={quote} />;
         })}
       </>
     );

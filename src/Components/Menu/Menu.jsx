@@ -1,4 +1,4 @@
-import  React, { Component } from "react";
+import React, { Component } from "react";
 import "./Menu.css";
 import { Link } from "react-router-dom";
 
@@ -9,17 +9,13 @@ export default class Header extends Component {
   };
 
   openMenu = (e) => {
-    
-    
-
     this.setState({
       isOpen: !this.state.isOpen,
     });
   };
 
-
   render() {
-    const menuClass = this.state.isOpen ? "menu menu-reveal" : "menu"
+    const menuClass = this.state.isOpen ? "menu menu-reveal" : "menu";
     return (
       <nav className="menu_container">
         <div className="menu_container__nav">
