@@ -1,17 +1,29 @@
-import { React, Component } from "react";
-import "./Menu.css"
-import {Link} from "react-router-dom";
+import  React, { Component } from "react";
+import "./Menu.css";
+import { Link } from "react-router-dom";
 
 export default class Header extends Component {
   state = {
     currentUser: false,
+    isOpen: false,
   };
 
+  openMenu = (e) => {
+    
+    
+
+    this.setState({
+      isOpen: !this.state.isOpen,
+    });
+  };
+
+
   render() {
+    const menuClass = this.state.isOpen ? "menu menu-reveal" : "menu"
     return (
       <nav className="menu_container">
         <div className="menu_container__nav">
-          <div className="burger" id="menu_burger">
+          <div className="burger" id="menu_burger" onClick={this.openMenu}>
             <div className="burger__line burger__line--1"></div>
             <div className="burger__line burger__line--2"></div>
             <div className="burger__line burger__line--3"></div>
@@ -60,31 +72,41 @@ export default class Header extends Component {
 
         <div className="line-separation"></div>
 
-
-        <div className="menu" id="menu_page">
+        <div className={menuClass} id="menu_page">
           <div className="menu__item menu__item--quote-related">
-
-          <div className="menu__item menu__item--account">
-            <h2 className="title">Hello <span className="title">UserPseudo</span></h2>
-            <span className="publication-date">a.k.a</span>
-            <h3 className="body-bold">UserName</h3>
-            <Link to="#" className="published-by-link">My account</Link>
-          </div>
+            <div className="menu__item menu__item--account">
+              <h2 className="title">
+                Hello <span className="title">UserPseudo</span>
+              </h2>
+              <span className="publication-date">a.k.a</span>
+              <h3 className="body-bold">UserName</h3>
+              <Link to="#" className="published-by-link">
+                My account
+              </Link>
+            </div>
 
             <Link to="/quotes/create-quote" className="body-bold">
-              <img src="./../../../public/Images/icons/menu-publish-icon.svg" alt="" />
+              <img
+                src="./../../../public/Images/icons/menu-publish-icon.svg"
+                alt=""
+              />
               Publish an Awesome Quote
             </Link>
             <Link to="/home/best-quotes" className="body-bold">
-            <img src="./../../../public/Images/icons/menu-best_quotes-icon.svg" alt="" />
+              <img
+                src="./../../../public/Images/icons/menu-best_quotes-icon.svg"
+                alt=""
+              />
               Best quotes
             </Link>
             <Link to="/filter" className="body-bold">
-            <img src="./../../../public/Images/icons/menu-filter-icon.svg" alt="" />
+              <img
+                src="./../../../public/Images/icons/menu-filter-icon.svg"
+                alt=""
+              />
               Filter
             </Link>
           </div>
-
 
           <div className="menu__item menu__item--legal">
             <Link to="/about" className="body">

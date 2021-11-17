@@ -10,7 +10,7 @@ export default function QuoteCardHeader(props) {
         <div className="quote_header__infos">
           <div className="quote_header__infos--text">
             <span className="published-by">Published by: </span>
-            <Link to="#" className="published-by-link">
+            <Link to={"/users/"+props.publisher.pseudo} className="published-by-link">
               {props.publisher.pseudo}
             </Link>
             <span className="publication-date">

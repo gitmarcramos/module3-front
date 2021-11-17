@@ -7,6 +7,7 @@ class Home extends React.Component {
   state = {
     quotes: [],
   };
+  
 
   async componentDidMount() {
     try {
