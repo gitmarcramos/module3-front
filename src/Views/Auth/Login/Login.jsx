@@ -30,7 +30,7 @@ export default class Login extends React.Component {
           </button>
 
           <div className="no-account-yet">
-            <Link to="/account-creation" className="body-bold grey">No account yet?</Link>
+            <Link to="/auth/account-creation" className="body-bold grey">No account yet?</Link>
           </div>
 
 
