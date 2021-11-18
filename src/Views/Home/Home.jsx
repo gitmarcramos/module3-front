@@ -5,13 +5,14 @@ import QuoteCard from "./../../Components/QuoteCard/QuoteCard";
 
 class Home extends React.Component {
   state = {
-    quotes: [],
+    quotes: null,
   };
   
 
   async componentDidMount() {
     try {
       const quotes = await APIHandler.get("/api/home");
+      console.log(quotes);
       this.setState({ quotes: quotes.data });
     } catch (err) {
       console.log(err);
@@ -19,6 +20,9 @@ class Home extends React.Component {
   }
 
   render() {
+    if(!this.state.quotes) {
+      return <h1 className="title">Loading</h1>
+    }
     return (
       <>
         <Menu />
