@@ -1,7 +1,8 @@
 import React from "react";
 import "./CreateQuote-Body.css";
 
-export default function CreateQuoteBody(props) {
+export default function CreateQuoteBody({handleChange, i}) {
+
   return (
     <>
       <div className="ajax-form-by-person">
@@ -15,6 +16,7 @@ export default function CreateQuoteBody(props) {
             type="text"
             name="user"
             placeholder="Enter the name of the person"
+            onChange={(e)=>{handleChange(e,i)}}
             required
           ></input>
         </div>
@@ -30,8 +32,12 @@ export default function CreateQuoteBody(props) {
             cols="30"
             rows="5"
             placeholder="Enter here your message"
+            onChange={(e)=>{handleChange(e,i)}}
             required
           ></textarea>
+          <div className="button--add_person remove-person">
+            Remove this person
+          </div>
         </div>
       </div>
     </>

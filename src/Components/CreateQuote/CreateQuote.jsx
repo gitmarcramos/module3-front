@@ -6,36 +6,39 @@ import APIHandler from "./../../api/handler";
 
 export default class CreateQuote extends Component {
   state = {
-    publisher: null,
-    user: null,
-    text: null,
+    publisher: "currentUser",
+    user: [],
+    text: [],
     hashtags: [],
+    counter: 0,
   };
 
   addPerson = (e) => {
-    <CreateQuoteBody/>
-    console.log(this.state)
-  }
+    this.setState({ counter: this.state.counter + 1 });
+  };
 
+  handleChange = (e, i) => {
+    const copy = [...this.state[e.target.name]];
+    copy[i] = e.target.value;
 
-  handleChange = (e) => {
     this.setState({
-      [e.target.name]: e.target.value,
+      copy
     });
-    console.log(this.state.hashtags)
   };
 
   handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const newQuote = await APIHandler.post("/api/create-quote", this.state);
-      console.log(newQuote);
     } catch (e) {
       console.error(e);
     }
   };
 
   render() {
+    let repeat = Array(this.state.counter).fill(0);
+    console.log(this.state.text);
+
     return (
       <>
         <Menu />
@@ -45,7 +48,44 @@ export default class CreateQuote extends Component {
           <form className="form">
             <div className="ajax_form form">
               <div className="ajax_form_message_container">
-                <CreateQuoteBody />
+                <div className="ajax-form-by-person">
+                  <div className="ajax_input">
+                    <label className="body-bold" htmlFor="ajax-input-name">
+                      Name
+                    </label>
+
+                    <input
+                      id="ajax-input-name"
+                      type="text"
+                      name="user"
+                      placeholder="Enter the name of the person"
+                      onChange={this.handleChange}
+                      required
+                    ></input>
+                  </div>
+
+                  <div className="ajax_input">
+                    <label className="body-bold" htmlFor="ajax-input-message">
+                      Message
+                    </label>
+
+                    <textarea
+                      name="text"
+                      id="ajax-input-message"
+                      cols="30"
+                      rows="5"
+                      placeholder="Enter here your message"
+                      onChange={this.handleChange}
+                      required
+                    ></textarea>
+                  </div>
+                </div>
+                {/* Here add persons */}
+                {repeat.map((quote, i) => {
+                  return (
+                    <CreateQuoteBody handleChange={this.handleChange} key={i} i={i}/>
+                  );
+                })}
               </div>
             </div>
 
