@@ -1,9 +1,9 @@
 import React from "react";
 import "./QuoteCardHeader.css";
 import { Link } from "react-router-dom";
+import ModalUpdateQuote from "./../../Components/ModalUpdateQuote/ModalUpdateQuote"
 
 export default function QuoteCardHeader(props) {
-  // console.log(props.hashtags, props.hashtags.length);
   return (
     <>
       <div className="quote_header" key={props.key}>

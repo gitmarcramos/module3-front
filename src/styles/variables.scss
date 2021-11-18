@@ -5,7 +5,8 @@
     --main: #444444;
     --grey: #696969;
     --lightgrey: #BBBBBB;
-    --warning: #FF3434
+    --warning: #BF3B3B;
+    --modal: #fffcecf6;
 }
 
 /* ------------------------------ // Font face ------------------------------ */
@@ -169,6 +170,10 @@ img {
 
 .grey {
     color: var(--grey);
+}
+
+.danger{
+    color: var(--warning);
 }
 
 /* ------------------------------- // Buttons ------------------------------- */

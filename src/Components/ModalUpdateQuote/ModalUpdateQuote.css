@@ -1,0 +1,46 @@
+.modal-update-quote {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 999999999999999999999;
+  background-color: var(--modal);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: .8rem;
+  padding: 7rem clamp(1rem, 1vw, 1.8rem) 7rem;
+}
+
+.modal-update-quote .modal-update-close {
+  width: 17px;
+  height: 17px;
+  position: absolute;
+  top: .8rem;
+  right: .8rem;
+  cursor: pointer;
+}
+
+.modal-update-quote .modal-update-close .modal-close {
+  width: 100%;
+}
+
+.modal-update-quote .button--primary {
+  margin: 0;
+}
+
+.modal-update-quote .delete {
+  background-color: var(--warning);
+}
+/*# sourceMappingURL=ModalUpdateQuote.css.map */

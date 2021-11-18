@@ -1,12 +1,14 @@
-import { React, Component } from "react";
-import "./QuoteCard.css"
+import React, { Component } from "react";
+import "./QuoteCard.css";
 
-import QuoteCardHeader from "./../../Components/Quotecard-header/QuoteCardHeader";
-import QuoteCardBody from "./../../Components/Quote-body/QuoteCardBody";
-import QuoteCardFooter from "./../../Components/QuoteCard-footer/QuoteCardFooter";
+import QuoteCardHeader from "../Quotecard-header/QuoteCardHeader";
+import QuoteCardBody from "../Quote-body/QuoteCardBody";
+import QuoteCardFooter from "../QuoteCard-footer/QuoteCardFooter";
+import ModalUpdateQuote from "../ModalUpdateQuote/ModalUpdateQuote";
+import ModalQuoteDeleted from "../ModalQuoteDeleted/ModalQuoteDeleted";
 
-export default function QuoteCard(props) {
-  return (
+export default function QuoteCard (props) {
+    return (
       <div className="quote">
         <QuoteCardHeader
           date={props.data.dateCreatedAt}
@@ -16,5 +18,5 @@ export default function QuoteCard(props) {
         <QuoteCardBody quote={props.data.quotes} />
         <QuoteCardFooter />
       </div>
-  );
+    );
 }

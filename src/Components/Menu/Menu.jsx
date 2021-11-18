@@ -14,6 +14,8 @@ export default class Header extends Component {
     });
   };
 
+  
+
   render() {
     const menuClass = this.state.isOpen ? "menu menu-reveal" : "menu";
     return (
@@ -70,22 +72,23 @@ export default class Header extends Component {
 
         <div className={menuClass} id="menu_page">
           <div className="menu__item menu__item--quote-related">
-            <div className="menu__item menu__item--account">
-              <h2 className="title">
-                Hello <span className="title">UserPseudo</span>
-              </h2>
-              <span className="publication-date">a.k.a</span>
-              <h3 className="body-bold">UserName</h3>
-              <Link to="#" className="published-by-link">
-                My account
-              </Link>
-            </div>
+
+          {/* If the user is logged, the followig code appears */}
+            {this.state.currentUser === true && (
+              <div className="menu__item menu__item--account">
+                <h2 className="title">
+                  Hello <span className="title">[UserPseudo]</span>
+                </h2>
+                <span className="publication-date">a.k.a</span>
+                <h3 className="body-bold">[UserName]</h3>
+                <Link to="#" className="published-by-link">
+                  My account
+                </Link>
+              </div>
+            )}
 
             <Link to="/quotes/create-quote" className="body-bold">
-              <img
-                src="./../../../Images/icons/menu-publish-icon.svg"
-                alt=""
-              />
+              <img src="./../../../Images/icons/menu-publish-icon.svg" alt="" />
               Publish an Awesome Quote
             </Link>
             <Link to="/home/best-quotes" className="body-bold">
@@ -96,10 +99,7 @@ export default class Header extends Component {
               Best quotes
             </Link>
             <Link to="/filter" className="body-bold">
-              <img
-                src="./../../../Images/icons/menu-filter-icon.svg"
-                alt=""
-              />
+              <img src="./../../../Images/icons/menu-filter-icon.svg" alt="" />
               Filter
             </Link>
           </div>

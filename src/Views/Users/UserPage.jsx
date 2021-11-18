@@ -5,10 +5,12 @@ import APIHandler from "./../../api/handler";
 import QuoteCard from "../../Components/QuoteCard/QuoteCard";
 import Menu from "./../../Components/Menu/Menu";
 
+
 export default class UserPage extends React.Component {
   state = {
     user: null,
     followBtnState: false,
+
   };
   async componentDidMount() {
     this.fetchUser();
@@ -29,7 +31,8 @@ export default class UserPage extends React.Component {
   };
 
   //! NOT WORKING MAN!
-    addUserToFollowings = async () => {
+  addUserToFollowings = async () => {
+    try {
       const foundUser = await APIHandler.get(
         "/api/users/" + this.state.user.user.pseudo
       );
@@ -39,15 +42,18 @@ export default class UserPage extends React.Component {
         "currentUserId",
       ];
 
-      // console.log("Found user followers ======>",foundUser);
+      console.log("Found user followers ======>", foundUser);
 
       const followedUser = await APIHandler.patch(
         "/api/users/" + this.state.user.user.pseudo + "/edit",
-        foundUser
+        {followers: "foundUser.data.user.followers"}
       );
 
-      // console.log(followedUser);
-    };
+      console.log(followedUser);
+    } catch (e) {
+      console.error(e);
+    }
+  };
 
   toggleFollow = (e) => {
     this.setState(
@@ -109,7 +115,7 @@ export default class UserPage extends React.Component {
 
           {/* //! CHANGE THE CONDITION WHERE this.state.user._id to match currentUser cookie */}
           {/* If it's user's account, edit my account button */}
-          {this.state.user.user._id === "currentUser.id" ? (
+          {this.state.user.user._id === "currentUserID" ? (
             <Link to={pseudo + "/edit"}>
               <span className="published-by-link">Edit my account</span>
             </Link>
@@ -127,7 +133,7 @@ export default class UserPage extends React.Component {
 
           {/* //! CHANGE THE CONDITION WHERE this.state.user._id to match currentUser cookie */}
           {/* Conditional to check if it's user's account or another user's account */}
-          {this.state.user._id === "currentUser" ? (
+          {this.state.user.user._id === "currentUserID" ? (
             <h3 className="subtitle">My quotes</h3>
           ) : (
             <h3 className="subtitle">{name}'s quotes</h3>
