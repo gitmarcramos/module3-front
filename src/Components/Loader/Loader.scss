@@ -4,15 +4,16 @@ a {
 
 
 #index-loader {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    height: 100vh;
-    gap: 7rem;
-    padding-top: 0;
+    // display: flex;
+    // flex-direction: column;
+    // align-items: center;
+    // justify-content: center;
+    // text-align: center;
+    // height: 90vh;
+    // margin-top: -7rem;
 
+    position: absolute;
+    top: 0;
 
     img {
         width: clamp(170px, 5vw, 200px);
