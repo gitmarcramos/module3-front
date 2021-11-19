@@ -5,21 +5,22 @@ import APIHandler from "../../../api/handler";
 
 export default class EditAccount extends Component {
   state = {
-    picture: null,
-    email: null,
-    newPassword: null,
-    name: null,
+    user: [],
   };
 
-  async componentDidMount() {
+  componentDidMount() {
+    this.fetchUser();
+  }
+
+  fetchUser = async () => {
     try {
-        //! here needs to replace "flo" by ":pseudo" and get the pseudo value from the front
-        const getUser = await APIHandler.get("/api/users/flo");
-        console.log(getUser.data);
+      //! here needs to replace "flo" by ":pseudo" and get the pseudo value from the front
+      const getUser = await APIHandler.get("/api/users/flo");
+      this.setState({ user: getUser.data.user });
     } catch (err) {
       console.error(err);
     }
-  }
+  };
 
   handleChange = (e) => {
     this.setState({
@@ -28,6 +29,12 @@ export default class EditAccount extends Component {
   };
 
   render() {
+    if (this.state === []) {
+      return <p className="body">Getting infos in database</p>;
+      // Or use the "?" (optional chaining) to check if the condition is null. IE: console.log(this.state.user?.user);
+    }
+
+
     return (
       <>
         <Menu />
@@ -53,8 +60,8 @@ export default class EditAccount extends Component {
               id="mail"
               name="mail"
               placeholder="Update your email *"
-              value={this.state.email}
               required
+              value={this.state.user.mail}
               onChange={this.handleChange}
             />
 
@@ -83,6 +90,7 @@ export default class EditAccount extends Component {
               className="input"
               name="name"
               type="text"
+              value={this.state.user.name}
               onChange={this.handleChange}
             />
 
