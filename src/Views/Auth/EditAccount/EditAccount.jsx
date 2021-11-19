@@ -5,7 +5,7 @@ import APIHandler from "../../../api/handler";
 
 export default class EditAccount extends Component {
   state = {
-    user: [],
+    user: null,
   };
 
   componentDidMount() {
@@ -14,8 +14,8 @@ export default class EditAccount extends Component {
 
   fetchUser = async () => {
     try {
-      //! here needs to replace "flo" by ":pseudo" and get the pseudo value from the front
-      const getUser = await APIHandler.get("/api/users/flo");
+      const pseudo = this.props.match.params;
+      const getUser = await APIHandler.get("/api/users/" + pseudo);
       this.setState({ user: getUser.data.user });
     } catch (err) {
       console.error(err);
@@ -29,11 +29,13 @@ export default class EditAccount extends Component {
   };
 
   render() {
-    if (this.state === []) {
-      return <p className="body">Getting infos in database</p>;
-      // Or use the "?" (optional chaining) to check if the condition is null. IE: console.log(this.state.user?.user);
+    if (!this.state.user) {
+      return (
+        <h1 className="title">
+          Getting infos in database
+        </h1>
+      );
     }
-
 
     return (
       <>
@@ -54,45 +56,65 @@ export default class EditAccount extends Component {
               onChange={this.handleChange}
             />
 
-            <input
-              className="input"
-              type="email"
-              id="mail"
-              name="mail"
-              placeholder="Update your email *"
-              required
-              value={this.state.user.mail}
-              onChange={this.handleChange}
-            />
+            <div className="input-container">
+              <label className="body-bold" htmlFor="mail">
+                Email*
+              </label>
+              <input
+                className="input"
+                type="email"
+                id="mail"
+                name="mail"
+                placeholder="Update your email *"
+                required
+                value={this.state.user.mail}
+                onChange={this.handleChange}
+              />
+            </div>
 
-            <input
-              className="input"
-              type="password"
-              id="password"
-              name="password"
-              placeholder="New password *"
-              required
-              onChange={this.handleChange}
-            />
+            <div className="input-container">
+              <label className="body-bold" htmlFor="password">
+                New Password*
+              </label>
+              <input
+                className="input"
+                type="password"
+                id="password"
+                name="password"
+                placeholder="New password *"
+                required
+                onChange={this.handleChange}
+              />
+            </div>
 
-            <input
-              className="input"
-              type="password"
-              id="password-confirm"
-              name="password-confirm"
-              placeholder="Confirm new password *"
-              required
-              onChange={this.handleChange}
-            />
+            <div className="input-container">
+              <label className="body-bold" htmlFor="password-confirm">
+                Confirm password*
+              </label>
+              <input
+                className="input"
+                type="password"
+                id="password-confirm"
+                name="password-confirm"
+                placeholder="Confirm new password *"
+                required
+                onChange={this.handleChange}
+              />
+            </div>
 
-            <input
-              placeholder="Name"
-              className="input"
-              name="name"
-              type="text"
-              value={this.state.user.name}
-              onChange={this.handleChange}
-            />
+            <div className="input-container">
+              <label className="body-bold" htmlFor="name">
+                Name
+              </label>
+              <input
+                placeholder="Name"
+                className="input"
+                name="name"
+                type="text"
+                value={this.state.user.name}
+                onChange={this.handleChange}
+              />
+            </div>
 
             <span className="span-edit grey">* mandatory fields</span>
 
