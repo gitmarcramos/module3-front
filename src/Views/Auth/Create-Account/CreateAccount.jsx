@@ -79,6 +79,7 @@ export default class createAccount extends React.Component {
               type="email"
               placeholder="Your email"
               onChange={this.handleChange}
+              required
             />
           </div>
 
@@ -93,6 +94,7 @@ export default class createAccount extends React.Component {
               id="password"
               type="password"
               placeholder="Choose a password"
+              required
             ></input>
           </div>
 
@@ -107,6 +109,7 @@ export default class createAccount extends React.Component {
               id="username"
               type="text"
               placeholder="Enter your username"
+              required
             ></input>
           </div>
 
