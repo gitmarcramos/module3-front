@@ -37,11 +37,11 @@ class App extends Component {
             <Route exact path="/users/:pseudo/edit" component={EditAccount} />
             <Route path="/users/:pseudo" component={UserPage} />
 
-            <ProtectedRoute
+            {/* <ProtectedRoute
               path="/quotes/create-quote"
               component={CreateQuote}
-            />
-            {/* <Route path="/quotes/create-quote" component={CreateQuote} /> */}
+            /> */}
+            <Route path="/quotes/create-quote" component={CreateQuote} />
           </Switch>
         </div>
       </UserContextProvider>

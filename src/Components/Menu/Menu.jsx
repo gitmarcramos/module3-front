@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 export default class Header extends Component {
   state = {
-    currentUser: false,
+    currentUser: true,
     isOpen: false,
   };
 
