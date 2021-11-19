@@ -6,7 +6,10 @@ import APIHandler from "../../../api/handler";
 export default class EditAccount extends Component {
   //decomposer le state avec les values dont on a besoin :)
   state = {
-    user: null,
+    mail: null,
+    name: null,
+    pseudo: null,
+    profilePic: null,
   };
 
   componentDidMount() {
@@ -14,15 +17,18 @@ export default class EditAccount extends Component {
   }
 
   componentDidUpdate() {
-    if (this.props.match.params.pseudo !== this.state.user.pseudo)
+    if (this.props.match.params.pseudo !== this.state.pseudo)
       this.fetchUser();
   }
 
   fetchUser = async () => {
     try {
-      const pseudo = this.props.match.params.pseudo;
-      const getUser = await APIHandler.get("/api/users/" + pseudo);
-      this.setState({ user: getUser.data.user });
+      const dbPseudo = this.props.match.params.pseudo;
+      const { data } = await APIHandler.get("/api/users/" + dbPseudo);
+
+      const { mail, name, pseudo, profilePic } = data.user;
+      this.setState({ mail, name, pseudo, profilePic });
+
     } catch (err) {
       console.error(err);
     }
@@ -32,14 +38,15 @@ export default class EditAccount extends Component {
     this.setState({
       [e.target.name]: e.target.value,
     });
+    console.log(e.target.value, e.target.name);
   };
 
   handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const updateUser = await APIHandler.patch(
-        "/api/users/" + this.state.user.pseudo,
-        this.state.user
+        "/api/users/" + this.state.pseudo,
+        this.state
       );
       this.setState(...updateUser);
     } catch (err) {
@@ -48,7 +55,7 @@ export default class EditAccount extends Component {
   };
 
   render() {
-    if (!this.state.user) {
+    if (!this.state) {
       return <h1 className="title">Getting infos in database</h1>;
     }
 
@@ -60,7 +67,7 @@ export default class EditAccount extends Component {
 
           <form className="form">
             <a href="" id="imagePicker">
-              <img src="/images/icons/user-icon.png" alt="user-icon"></img>
+              <img src={this.state.profilePic} alt="user-icon"></img>
             </a>
             <label htmlFor="textImage"></label>
             <input
@@ -82,8 +89,8 @@ export default class EditAccount extends Component {
                 name="mail"
                 placeholder="Update your email *"
                 required
+                value={this.state.mail}
                 onChange={this.handleChange}
-                value={this.state.user.mail}
               />
             </div>
 
@@ -124,8 +131,8 @@ export default class EditAccount extends Component {
                 className="input"
                 name="name"
                 type="text"
-                value={this.state.user.name}
                 onChange={this.handleChange}
+                // value={this.state.user.name}
               />
             </div>
 
