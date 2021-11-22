@@ -7,7 +7,7 @@ export default function MenuSecond(props) {
       <nav className="menu_container_second">
         <Link className="nav-logo" to="/home">
           <img
-            src="./../../../public/Images/logo/awesome-quote-logo-inline.png"
+            src="./../../../Images/logo/awesome-quote-logo-inline.png"
             alt="Awesome Quotes Logo inline"
           />
         </Link>

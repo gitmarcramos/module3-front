@@ -5,7 +5,7 @@ import QuoteCard from "./../../Components/QuoteCard/QuoteCard";
 
 class Home extends React.Component {
   state = {
-    quotes: [],
+    quotes: null,
   };
   
 
@@ -19,6 +19,10 @@ class Home extends React.Component {
   }
 
   render() {
+    if(!this.state.quotes) {
+      return <h1 className="title">Loading</h1>
+    }
+
     return (
       <>
         <Menu />

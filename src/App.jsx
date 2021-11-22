@@ -4,11 +4,16 @@ import Home from "./Views/Home/Home";
 import "./styles/mainStyle.css";
 import Loader from "./Components/Loader/Loader";
 import CreateAccount from "./Views/Auth/Create-Account/CreateAccount";
+import EditAccount from "./Views/Auth/EditAccount/EditAccount"
 import ChooseAccountCreation from "./Views/Auth/ChooseAccountCreation/ChooseAccountCreation";
 import Login from "./Views/Auth/Login/Login";
 import UserPage from "./Views/Users/UserPage";
 import CreateQuote from "./Components/CreateQuote/CreateQuote";
 import { UserContextProvider } from "./auth/UserContext";
+
+//authentication
+import { UserContextProvider } from "./Components/Auth/UserContext";
+import { ProtectedRoute } from "./Components/Auth/ProtectedRoute";
 
 class App extends Component {
   state = {
@@ -30,8 +35,13 @@ class App extends Component {
             />
             <Route path="/auth/login" component={Login} />
 
+            <Route exact path="/users/:pseudo/edit" component={EditAccount} />
             <Route path="/users/:pseudo" component={UserPage} />
 
+            {/* <ProtectedRoute
+              path="/quotes/create-quote"
+              component={CreateQuote}
+            /> */}
             <Route path="/quotes/create-quote" component={CreateQuote} />
           </Switch>
         </div>

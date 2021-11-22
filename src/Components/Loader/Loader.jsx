@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 export default function Loader() {
   return (
     <Link to="/home">
-      <div id="index-loader" className="main">
+      <div id="index-loader">
         <img
           src="./../../../Images/logo/awesome-quote-logo.png"
           alt="Awesome Quotes logo"

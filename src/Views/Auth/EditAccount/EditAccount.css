@@ -1,0 +1,14 @@
+#update_account-page h1 {
+  width: 100%;
+  text-align: center;
+  margin-top: 1.8rem;
+}
+
+#update_account-page img {
+  border-radius: 50%;
+}
+
+#update_account-page button {
+  margin: 3.2rem 0;
+}
+/*# sourceMappingURL=EditAccount.css.map */
