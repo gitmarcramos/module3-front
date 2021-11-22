@@ -9,7 +9,6 @@ import ChooseAccountCreation from "./Views/Auth/ChooseAccountCreation/ChooseAcco
 import Login from "./Views/Auth/Login/Login";
 import UserPage from "./Views/Users/UserPage";
 import CreateQuote from "./Components/CreateQuote/CreateQuote";
-import { UserContextProvider } from "./auth/UserContext";
 
 //authentication
 import { UserContextProvider } from "./Components/Auth/UserContext";

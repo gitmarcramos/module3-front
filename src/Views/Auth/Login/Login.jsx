@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Link, Redirect } from "react-router-dom";
-import { useAuth } from "./../../../auth/UserContext";
+import { useAuth } from "./../../../Components/Auth/UserContext";
 import APIHandler from "./../../../api/handler";
 import MenuSecond from "./../../../Components/MenuSecond/MenuSecond";
 import "./../../../styles/form.css";

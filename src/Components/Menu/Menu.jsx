@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Menu.css";
 import { Link, useHistory } from "react-router-dom";
-import { useAuth } from "./../../auth/UserContext";
+import { useAuth } from "./../../Components/Auth/UserContext";
 import APIHandler from "./../../api/handler";
 
 export default function Header() {
