@@ -1,27 +1,34 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import "./Menu.css";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import { useAuth } from "./../../auth/UserContext";
+import APIHandler from "./../../api/handler";
 
-export default class Header extends Component {
-  state = {
-    currentUser: false,
-    isOpen: false,
+export default function Header() {
+  const [isOpen, setOpen] = useState(false)
+  const { isLoggedIn, currentUser, setCurrentUser } = useAuth();
+  const history = useHistory();
+
+  const openMenu = (e) => {
+    setOpen(!isOpen);
   };
 
-  openMenu = (e) => {
-    this.setState({
-      isOpen: !this.state.isOpen,
-    });
+  const handleLogout = async (e) => {
+    try {
+      await APIHandler.get("/api/auth/logout");
+      setCurrentUser(null);
+      history.push("/auth/login");
+    } catch (err) {
+      console.error(err)
+    }
   };
 
-  
+  const menuClass = isOpen ? "menu menu-reveal" : "menu";
 
-  render() {
-    const menuClass = this.state.isOpen ? "menu menu-reveal" : "menu";
     return (
       <nav className="menu_container">
         <div className="menu_container__nav">
-          <div className="burger" id="menu_burger" onClick={this.openMenu}>
+          <div className="burger" id="menu_burger" onClick={openMenu}>
             <div className="burger__line burger__line--1"></div>
             <div className="burger__line burger__line--2"></div>
             <div className="burger__line burger__line--3"></div>
@@ -74,14 +81,14 @@ export default class Header extends Component {
           <div className="menu__item menu__item--quote-related">
 
           {/* If the user is logged, the followig code appears */}
-            {this.state.currentUser === true && (
+            {isLoggedIn === true && (
               <div className="menu__item menu__item--account">
                 <h2 className="title">
-                  Hello <span className="title">[UserPseudo]</span>
+                  Hello <span className="title">{currentUser.pseudo}</span>
                 </h2>
                 <span className="publication-date">a.k.a</span>
-                <h3 className="body-bold">[UserName]</h3>
-                <Link to="#" className="published-by-link">
+                <h3 className="body-bold">{currentUser.name}</h3>
+                <Link to={"/users/" + currentUser.pseudo} className="published-by-link">
                   My account
                 </Link>
               </div>
@@ -116,19 +123,20 @@ export default class Header extends Component {
             </Link>
           </div>
 
-          {/* {{#if currentUser}}
+          { isLoggedIn ? (
         <div className="menu__item menu__item--log-out">
-            <a href="/auth/logout" className="suggestion-modal">Logout</a>
+            <div style={{cursor: "pointer"}}className="suggestion-modal" onClick={handleLogout}>
+              Logout
+            </div>
         </div>
-        {{else}} */}
+          ) : (
           <div className="menu__item menu__item--log-in">
             <Link to="/auth/login" className="suggestion-modal">
               Login
             </Link>
           </div>
-          {/* {{/if}} */}
+          )}
         </div>
       </nav>
     );
-  }
 }

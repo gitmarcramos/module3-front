@@ -8,6 +8,7 @@ import ChooseAccountCreation from "./Views/Auth/ChooseAccountCreation/ChooseAcco
 import Login from "./Views/Auth/Login/Login";
 import UserPage from "./Views/Users/UserPage";
 import CreateQuote from "./Components/CreateQuote/CreateQuote";
+import { UserContextProvider } from "./auth/UserContext";
 
 class App extends Component {
   state = {
@@ -16,23 +17,25 @@ class App extends Component {
 
   render() {
     return (
-      <div className="main">
-        <Switch>
-          <Route exact path="/" component={Loader} />
-          <Route path="/home" component={Home} />
+      <UserContextProvider>
+        <div className="main">
+          <Switch>
+            <Route exact path="/" component={Loader} />
+            <Route path="/home" component={Home} />
 
-          <Route path="/auth/create-account" component={CreateAccount} />
-          <Route
-            path="/auth/account-creation"
-            component={ChooseAccountCreation}
-          />
-          <Route path="/auth/login" component={Login} />
+            <Route path="/auth/create-account" component={CreateAccount} />
+            <Route
+              path="/auth/account-creation"
+              component={ChooseAccountCreation}
+            />
+            <Route path="/auth/login" component={Login} />
 
-          <Route path="/users/:pseudo" component={UserPage} />
+            <Route path="/users/:pseudo" component={UserPage} />
 
-          <Route path="/quotes/create-quote" component={CreateQuote} />
-        </Switch>
-      </div>
+            <Route path="/quotes/create-quote" component={CreateQuote} />
+          </Switch>
+        </div>
+      </UserContextProvider>
     );
   }
 }
